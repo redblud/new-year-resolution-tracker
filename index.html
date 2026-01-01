@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 // THE MISSION</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Rajdhani:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Placeholder for FontAwesome, might need a real kit or CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div class="scanlines"></div>
+
+    <header class="hero">
+        <div class="container">
+            <div class="clock-wrapper">
+                <div class="clock-title">TIME REMAINING</div>
+                <div id="doomsday-clock" class="clock-display">000:00:00:00</div>
+                <div class="clock-labels">
+                    <span>DAYS</span><span>HRS</span><span>MIN</span><span>SEC</span>
+                </div>
+            </div>
+            <h1 class="glitch" data-text="2026 MISSION">2026 MISSION</h1>
+            <p class="subtitle">"IT'S NOT JUST A CALL... IT'S A WARNING."</p>
+            <div class="status-bar">
+                <span class="status-item"><i class="fas fa-satellite-dish"></i> SYSTEM: ONLINE</span>
+                <span class="status-item"><i class="fas fa-clock"></i> DAY: <span id="current-day">0</span>/<span
+                        id="total-days">365</span></span>
+                <span class="status-item"><i class="fas fa-battery-half"></i> PROGRESS: <span
+                        id="total-progress">0%</span></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- SECTION 1: IDENTITY // LINKS -->
+        <section class="panel" id="identity">
+            <h2 class="section-title">01 // IDENTITY LINKS</h2>
+            <div class="grid-links">
+                <a href="https://github.com/redblud" class="data-card link-card" id="link-github" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>GITHUB</span>
+                </a>
+                <a href="https://leetcode.com/u/mdadib/" class="data-card link-card" id="link-leetcode" target="_blank">
+                    <i class="fas fa-code"></i>
+                    <span>LEETCODE</span>
+                </a>
+                <a href="https://codeforces.com/profile/neo_redblud" class="data-card link-card" id="link-codeforces"
+                    target="_blank">
+                    <i class="fas fa-terminal"></i>
+                    <span>CODEFORCES</span>
+                </a>
+                <a href="https://letterboxd.com/redblud/" class="data-card link-card" id="link-letterboxd"
+                    target="_blank">
+                    <i class="fas fa-film"></i>
+                    <span>LETTERBOXD</span>
+                </a>
+                <a href="https://www.goodreads.com/user/show/194360038-rafsan-jani" class="data-card link-card"
+                    id="link-goodreads" target="_blank">
+                    <i class="fas fa-book"></i>
+                    <span>GOODREADS</span>
+                </a>
+                <a href="https://www.imdb.com/user/ur179653142/?ref_=po_hm_nv_profile" class="data-card link-card"
+                    id="link-imdb" target="_blank">
+                    <i class="fas fa-star"></i>
+                    <span>IMDB</span>
+                </a>
+                <a href="https://www.hackerrank.com/profile/redblud" class="data-card link-card" id="link-hackerrank"
+                    target="_blank">
+                    <i class="fab fa-hackerrank"></i>
+                    <span>HACKERRANK</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SKILL ACQUISITION -->
+        <section class="panel" id="skills">
+            <h2 class="section-title">02 // SKILL ACQUISITION</h2>
+            <div class="checklist-grid">
+                <label class="check-item">
+                    <input type="checkbox" name="skill" data-id="ai-ml">
+                    <span class="checkmark"></span>
+                    <span class="label-text">LEARN AI/ML</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" name="skill" data-id="cybersecurity">
+                    <span class="checkmark"></span>
+                    <span class="label-text">LEARN CYBERSECURITY</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" name="skill" data-id="webdev">
+                    <span class="checkmark"></span>
+                    <span class="label-text">LEARN WEB DEVELOPMENT</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" name="skill" data-id="datascience">
+                    <span class="checkmark"></span>
+                    <span class="label-text">LEARN DATA SCIENCE</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" name="skill" data-id="english">
+                    <span class="checkmark"></span>
+                    <span class="label-text">IMPROVE ENGLISH</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox" name="skill" data-id="ibm-camp">
+                    <span class="checkmark"></span>
+                    <span class="label-text">IBM ONLINE SUMMER CAMP</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- SECTION 3: QUANTIFIABLE METRICS -->
+        <section class="panel" id="metrics">
+            <h2 class="section-title">03 // QUANTIFIABLE METRICS</h2>
+
+            <div class="tracker-item">
+                <div class="tracker-header">
+                    <span>LEETCODE PROBLEMS</span>
+                    <span class="tracker-val"><span id="val-leetcode">0</span> / 400 <span class="accent-text">[<span
+                                id="pct-leetcode">0%</span>]</span></span>
+                </div>
+                <div class="bat-progress-control" data-id="leetcode" data-min="0" data-max="400" data-step="1">
+                    <button class="bat-btn-control minus"><i class="fas fa-minus"></i></button>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <button class="bat-btn-control plus"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="tracker-item">
+                <div class="tracker-header">
+                    <span>BOOKS READ</span>
+                    <span class="tracker-val"><span id="val-books">0</span> / 50 <span class="accent-text">[<span
+                                id="pct-books">0%</span>]</span></span>
+                </div>
+                <div class="bat-progress-control" data-id="books" data-min="0" data-max="50" data-step="1">
+                    <button class="bat-btn-control minus"><i class="fas fa-minus"></i></button>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <button class="bat-btn-control plus"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="tracker-item">
+                <div class="tracker-header">
+                    <span>MOVIES WATCHED</span>
+                    <span class="tracker-val"><span id="val-movies">0</span> / 200 <span class="accent-text">[<span
+                                id="pct-movies">0%</span>]</span></span>
+                </div>
+                <div class="bat-progress-control" data-id="movies" data-min="0" data-max="200" data-step="1">
+                    <button class="bat-btn-control minus"><i class="fas fa-minus"></i></button>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <button class="bat-btn-control plus"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="tracker-item">
+                <div class="tracker-header">
+                    <span>ANIMES WATCHED</span>
+                    <span class="tracker-val"><span id="val-animes">0</span> / 12 <span class="accent-text">[<span
+                                id="pct-animes">0%</span>]</span></span>
+                </div>
+                <div class="bat-progress-control" data-id="animes" data-min="0" data-max="12" data-step="1">
+                    <button class="bat-btn-control minus"><i class="fas fa-minus"></i></button>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <button class="bat-btn-control plus"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="tracker-item">
+                <div class="tracker-header">
+                    <span>SHOWS WATCHED</span>
+                    <span class="tracker-val"><span id="val-shows">0</span> / 20 <span class="accent-text">[<span
+                                id="pct-shows">0%</span>]</span></span>
+                </div>
+                <div class="bat-progress-control" data-id="shows" data-min="0" data-max="20" data-step="1">
+                    <button class="bat-btn-control minus"><i class="fas fa-minus"></i></button>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <button class="bat-btn-control plus"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="tracker-item">
+                <div class="tracker-header">
+                    <span>CGPA GOAL</span>
+                    <span class="tracker-val"><span id="val-cgpa">0.0</span> / 4.0 <span class="accent-text">[<span
+                                id="pct-cgpa">0%</span>]</span></span>
+                </div>
+                <!-- Simulating a float slider with steps -->
+                <div class="bat-progress-control" data-id="cgpa" data-min="0" data-max="400" data-step="5">
+                    <button class="bat-btn-control minus"><i class="fas fa-minus"></i></button>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <button class="bat-btn-control plus"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: MILESTONES -->
+        <section class="panel" id="milestones">
+            <h2 class="section-title">04 // PRIMARY TARGETS</h2>
+            <div class="checklist-grid single-col">
+                <label class="check-item large">
+                    <input type="checkbox" name="milestone" data-id="cm-cf">
+                    <span class="checkmark"></span>
+                    <span class="label-text">BE CANDIDATE MASTER IN CODEFORCES</span>
+                </label>
+                <label class="check-item large">
+                    <input type="checkbox" name="milestone" data-id="research-paper">
+                    <span class="checkmark"></span>
+                    <span class="label-text">PUBLISH ONE EMPIRICAL RESEARCH PAPER</span>
+                </label>
+                <label class="check-item large">
+                    <input type="checkbox" name="milestone" data-id="gym">
+                    <span class="checkmark"></span>
+                    <span class="label-text">JOIN THE GYM (GET IN SHAPE)</span>
+                </label>
+                <label class="check-item large">
+                    <input type="checkbox" name="milestone" data-id="acquaintances">
+                    <span class="checkmark"></span>
+                    <span class="label-text">MAKE IMPORTANT ACQUAINTANCES</span>
+                </label>
+                <label class="check-item large">
+                    <input type="checkbox" name="milestone" data-id="hackathons">
+                    <span class="checkmark"></span>
+                    <span class="label-text">ATTEND HACKATHONS (AMAP)</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- SECTION 5: VIGILANTE PROTOCOL -->
+        <section class="panel alert-panel" id="protocol">
+            <h2 class="section-title warning-text">05 // VIGILANTE PROTOCOL</h2>
+            <p class="protocol-desc">STAY AWAY FROM SM AND PMO ADDICTION. DO NOT FAIL THIS CITY.</p>
+
+            <div class="streak-container">
+                <div class="streak-stat">
+                    <span class="streak-label">CURRENT STREAK</span>
+                    <span class="streak-number" id="current-streak">0</span>
+                    <span class="streak-unit">DAYS</span>
+                </div>
+                <div class="streak-actions">
+                    <button id="btn-checkin" class="bat-btn">MISSION CHECK-IN</button>
+                    <button id="btn-reset" class="bat-btn danger">RESET PROTOCOL</button>
+                </div>
+            </div>
+
+            <div class="heatmap-container">
+                <!-- Heatmap grid generated by JS -->
+                <div id="heatmap-grid" class="heatmap-grid"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>PROJECT 2026 // INITIATED</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
