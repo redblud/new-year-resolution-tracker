@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const ui = {
         currentDay: document.getElementById('current-day'),
         totalDays: document.getElementById('total-days'),
-        totalProgress: document.getElementById('total-progress'),
+        mainProgressText: document.getElementById('main-progress-text'),
+        mainProgressFill: document.getElementById('main-progress-fill'),
         checkboxes: document.querySelectorAll('input[type="checkbox"]'),
         sliders: document.querySelectorAll('.bat-slider'),
         streakCount: document.getElementById('current-streak'),
@@ -50,6 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
             animes: document.getElementById('pct-animes'),
             shows: document.getElementById('pct-shows'),
             cgpa: document.getElementById('pct-cgpa')
+        },
+        catPctDisplays: {
+            'ai-ml': document.getElementById('pct-ai-ml'),
+            'cybersecurity': document.getElementById('pct-cybersecurity'),
+            'webdev': document.getElementById('pct-webdev'),
+            'datascience': document.getElementById('pct-datascience'),
+            'english': document.getElementById('pct-english'),
+            'ibm-camp': document.getElementById('pct-ibm-camp')
         }
     };
 
@@ -62,6 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ui.totalDays) ui.totalDays.innerText = TOTAL_DAYS;
         setupEventListeners();
         startClock();
+        // Initial calc to set zeros correctly if new data structure
+        calculateProgress();
     }
 
     // --- DATA HANDLING ---
@@ -118,7 +129,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupEventListeners() {
         // Checkboxes (Skills & Milestones)
         ui.checkboxes.forEach(cb => {
-            const category = cb.name === 'skill' ? 'skills' : 'milestones';
+            const isSubSkill = cb.name === 'skill-sub';
+            const isMilestone = cb.name === 'milestone';
+
+            // Determine storage category
+            let category = 'skills';
+            if (isMilestone) category = 'milestones';
+            if (isSubSkill) category = 'skills'; // We store all skill checkboxes in appData.skills by ID
+
             const id = cb.dataset.id;
 
             if (appData[category][id]) {
@@ -232,11 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (appData.protocol.lastCheckIn === yesterdayStr) {
             appData.protocol.currentStreak++;
         } else {
-            if (appData.protocol.lastCheckIn === null) {
-                appData.protocol.currentStreak = 1;
-            } else {
-                appData.protocol.currentStreak = 1;
-            }
+            appData.protocol.currentStreak = 1; // Logic fix: if missed a day, reset to 1 (today)
         }
 
         appData.protocol.lastCheckIn = today;
@@ -280,21 +294,41 @@ document.addEventListener('DOMContentLoaded', () => {
         let score = 0;
         let totalScore = 0;
 
-        // Skills (Each worth 5 points)
-        const skillKeys = ['ai-ml', 'cybersecurity', 'webdev', 'datascience', 'english', 'ibm-camp'];
-        skillKeys.forEach(k => {
-            totalScore += 5;
-            if (appData.skills[k]) score += 5;
+        // 1. SKILLS (Categories)
+        // We define the categories and find their sub-skills in the DOM to calculate local percentages
+        const categories = ['ai-ml', 'cybersecurity', 'webdev', 'datascience', 'english', 'ibm-camp'];
+
+        categories.forEach(cat => {
+            const subCheckboxes = document.querySelectorAll(`input[name="skill-sub"][data-cat="${cat}"]`);
+            const totalSub = subCheckboxes.length;
+            let checkedCount = 0;
+
+            subCheckboxes.forEach(cb => {
+                if (appData.skills[cb.dataset.id]) checkedCount++;
+            });
+
+            // Update Category UI
+            let catPct = 0;
+            if (totalSub > 0) catPct = Math.round((checkedCount / totalSub) * 100);
+            if (ui.catPctDisplays[cat]) ui.catPctDisplays[cat].innerText = `${catPct}%`;
+
+            // Contribution to Total Score:
+            // Assume entire Skill Acquisition section is worth X points, or each category worth Y.
+            // Let's say each category is worth 10 points.
+            let catPoints = 10;
+            totalScore += catPoints;
+            score += (checkedCount / totalSub) * catPoints;
         });
 
-        // Milestones (Each worth 10 points)
+
+        // 2. MILESTONES (Each worth 10 points)
         const milestoneKeys = ['cm-cf', 'research-paper', 'gym', 'acquaintances', 'hackathons'];
         milestoneKeys.forEach(k => {
             totalScore += 10;
             if (appData.milestones[k]) score += 10;
         });
 
-        // Metrics (Normalized to 10 points each)
+        // 3. METRICS (Normalized to 10 points each)
         // Leetcode: 400
         totalScore += 10;
         score += Math.min((appData.metrics.leetcode || 0) / 400, 1) * 10;
@@ -315,15 +349,19 @@ document.addEventListener('DOMContentLoaded', () => {
         totalScore += 10;
         score += Math.min((appData.metrics.shows || 0) / 20, 1) * 10;
 
-        // CGPA: 4.0 (Stored as 0-400 slider val mostly)
+        // CGPA: 4.0 (Stored as 0-400 slider val)
         totalScore += 10;
         score += Math.min((appData.metrics.cgpa || 0) / 400, 1) * 10;
 
-        const percent = Math.round((score / totalScore) * 100);
+        // GLOBAL PERCENTAGE
+        const percent = (score / totalScore) * 100;
 
-        // Safety check for NaN
-        if (isNaN(percent)) ui.totalProgress.innerText = "0%";
-        else ui.totalProgress.innerText = percent + "%";
+        // Global Percentage
+
+        // Update Main Progress Bar (Decimal)
+        const formattedPct = percent.toFixed(2);
+        if (ui.mainProgressText) ui.mainProgressText.innerText = formattedPct + "%";
+        if (ui.mainProgressFill) ui.mainProgressFill.style.width = formattedPct + "%";
     }
 
     function updateUI() {

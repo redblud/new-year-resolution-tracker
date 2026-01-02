@@ -35,11 +35,19 @@
                 <span class="status-item"><i class="fas fa-satellite-dish"></i> SYSTEM: ONLINE</span>
                 <span class="status-item"><i class="fas fa-clock"></i> DAY: <span id="current-day">0</span>/<span
                         id="total-days">365</span></span>
-                <span class="status-item"><i class="fas fa-battery-half"></i> PROGRESS: <span
-                        id="total-progress">0%</span></span>
             </div>
         </div>
     </header>
+
+    <div class="main-progress-container">
+        <div class="main-bar-label">
+            <span>MISSION STATUS</span>
+            <span id="main-progress-text">0.00%</span>
+        </div>
+        <div class="main-progress-track">
+            <div class="main-progress-fill" id="main-progress-fill" style="width: 0%"></div>
+        </div>
+    </div>
 
     <main class="container">
 
@@ -84,39 +92,215 @@
         </section>
 
         <!-- SECTION 2: SKILL ACQUISITION -->
+        <!-- SECTION 2: SKILL ACQUISITION -->
         <section class="panel" id="skills">
             <h2 class="section-title">02 // SKILL ACQUISITION</h2>
-            <div class="checklist-grid">
-                <label class="check-item">
-                    <input type="checkbox" name="skill" data-id="ai-ml">
-                    <span class="checkmark"></span>
-                    <span class="label-text">LEARN AI/ML</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" name="skill" data-id="cybersecurity">
-                    <span class="checkmark"></span>
-                    <span class="label-text">LEARN CYBERSECURITY</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" name="skill" data-id="webdev">
-                    <span class="checkmark"></span>
-                    <span class="label-text">LEARN WEB DEVELOPMENT</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" name="skill" data-id="datascience">
-                    <span class="checkmark"></span>
-                    <span class="label-text">LEARN DATA SCIENCE</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" name="skill" data-id="english">
-                    <span class="checkmark"></span>
-                    <span class="label-text">IMPROVE ENGLISH</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox" name="skill" data-id="ibm-camp">
-                    <span class="checkmark"></span>
-                    <span class="label-text">IBM ONLINE SUMMER CAMP</span>
-                </label>
+
+            <div id="skill-container">
+                <!-- AI/ML -->
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <span class="skill-title">ARTIFICIAL INTELLIGENCE</span>
+                        <span class="skill-percent" id="pct-ai-ml">0%</span>
+                    </div>
+                    <div class="checklist-grid small-grid">
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="ai-ml" data-id="python">
+                            <span class="checkmark"></span>
+                            <span class="label-text">PYTHON CORE</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="ai-ml" data-id="pandas-numpy">
+                            <span class="checkmark"></span>
+                            <span class="label-text">PANDAS / NUMPY</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="ai-ml" data-id="scikit">
+                            <span class="checkmark"></span>
+                            <span class="label-text">SCIKIT-LEARN</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="ai-ml" data-id="deeplearning">
+                            <span class="checkmark"></span>
+                            <span class="label-text">PYTORCH / TENSORFLOW</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="ai-ml" data-id="llms">
+                            <span class="checkmark"></span>
+                            <span class="label-text">LLMS & TRANSFORMERS</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- CYBERSECURITY -->
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <span class="skill-title">CYBERSECURITY</span>
+                        <span class="skill-percent" id="pct-cybersecurity">0%</span>
+                    </div>
+                    <div class="checklist-grid small-grid">
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="cybersecurity" data-id="networking">
+                            <span class="checkmark"></span>
+                            <span class="label-text">NETWORKING BASICS</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="cybersecurity" data-id="linux">
+                            <span class="checkmark"></span>
+                            <span class="label-text">LINUX FUNDAMENTALS</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="cybersecurity" data-id="ctf">
+                            <span class="checkmark"></span>
+                            <span class="label-text">CTF / ETHICAL HACKING</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="cybersecurity" data-id="crypto">
+                            <span class="checkmark"></span>
+                            <span class="label-text">CRYPTOGRAPHY</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="cybersecurity" data-id="pentest">
+                            <span class="checkmark"></span>
+                            <span class="label-text">PENETRATION TESTING</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- WEB DEVELOPMENT -->
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <span class="skill-title">WEB DEVELOPMENT</span>
+                        <span class="skill-percent" id="pct-webdev">0%</span>
+                    </div>
+                    <div class="checklist-grid small-grid">
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="webdev" data-id="html-css">
+                            <span class="checkmark"></span>
+                            <span class="label-text">HTML5 / CSS3</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="webdev" data-id="js-ts">
+                            <span class="checkmark"></span>
+                            <span class="label-text">JS / TYPESCRIPT</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="webdev" data-id="frontend-fw">
+                            <span class="checkmark"></span>
+                            <span class="label-text">REACT / NEXT.JS</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="webdev" data-id="backend">
+                            <span class="checkmark"></span>
+                            <span class="label-text">BACKEND (NODE/PY)</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="webdev" data-id="db">
+                            <span class="checkmark"></span>
+                            <span class="label-text">DATABASES</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- DATA SCIENCE -->
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <span class="skill-title">DATA SCIENCE</span>
+                        <span class="skill-percent" id="pct-datascience">0%</span>
+                    </div>
+                    <div class="checklist-grid small-grid">
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="datascience" data-id="sql">
+                            <span class="checkmark"></span>
+                            <span class="label-text">SQL MASTERY</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="datascience" data-id="viz">
+                            <span class="checkmark"></span>
+                            <span class="label-text">DATA VISUALIZATION</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="datascience" data-id="stats">
+                            <span class="checkmark"></span>
+                            <span class="label-text">STATISTICS</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="datascience" data-id="bigdata">
+                            <span class="checkmark"></span>
+                            <span class="label-text">BIG DATA TOOLS</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="datascience" data-id="story">
+                            <span class="checkmark"></span>
+                            <span class="label-text">DATA STORYTELLING</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ENGLISH -->
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <span class="skill-title">ENGLISH PROFICIENCY</span>
+                        <span class="skill-percent" id="pct-english">0%</span>
+                    </div>
+                    <div class="checklist-grid small-grid">
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="english" data-id="vocab">
+                            <span class="checkmark"></span>
+                            <span class="label-text">VOCABULARY EXP.</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="english" data-id="grammar">
+                            <span class="checkmark"></span>
+                            <span class="label-text">ADVANCED GRAMMAR</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="english" data-id="speak">
+                            <span class="checkmark"></span>
+                            <span class="label-text">SPEAKING FLUENCY</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="english" data-id="read">
+                            <span class="checkmark"></span>
+                            <span class="label-text">READING COMP.</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="english" data-id="write">
+                            <span class="checkmark"></span>
+                            <span class="label-text">ACADEMIC WRITING</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- IBM CAMP -->
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <span class="skill-title">IBM SUMMER CAMP</span>
+                        <span class="skill-percent" id="pct-ibm-camp">0%</span>
+                    </div>
+                    <div class="checklist-grid small-grid">
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="ibm-camp" data-id="mod1">
+                            <span class="checkmark"></span>
+                            <span class="label-text">MODULE 01</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="ibm-camp" data-id="mod2">
+                            <span class="checkmark"></span>
+                            <span class="label-text">MODULE 02</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="ibm-camp" data-id="mod3">
+                            <span class="checkmark"></span>
+                            <span class="label-text">MODULE 03</span>
+                        </label>
+                        <label class="check-item small">
+                            <input type="checkbox" name="skill-sub" data-cat="ibm-camp" data-id="project">
+                            <span class="checkmark"></span>
+                            <span class="label-text">FINAL PROJECT</span>
+                        </label>
+                    </div>
+                </div>
             </div>
         </section>
 
